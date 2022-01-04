@@ -265,6 +265,10 @@ export default function Avatar({
     }
   }, [address, url, uri]);
 
+  const onError = useCallback(() => {
+    setUrl(null);
+  }, [url]);
+
   let avatarImg = null;
 
   const cssStyle = {
@@ -276,7 +280,7 @@ export default function Avatar({
   };
 
   if (url) {
-    avatarImg = <img alt="avatar" style={cssStyle} className={className} src={url} onLoad={onLoad} />;
+    avatarImg = <img alt="avatar" style={cssStyle} className={className} src={url} onError={onError} onLoad={onLoad} />;
   }
 
   const defaultAvatar =
